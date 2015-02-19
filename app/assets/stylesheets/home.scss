@@ -1,0 +1,24 @@
+@import "./csstyle";
+
+@include component(decide) {
+  top: 0;
+  width: 125px;
+  height: 125px;
+  padding: 10px;
+
+  @include option(marry){
+    color: #1F1F1F;
+    background: pink;
+  }
+
+  @include option(fuck){
+    color: #1F1F1F;
+    background: red;
+  }
+
+  @include option(kill){
+    color: #1F1F1F;
+    background: black;
+  }
+
+}

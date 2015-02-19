@@ -1,0 +1,25 @@
+<h1>Hey, you.</h1>
+<h2>Who would you like to marry or kill or fuck?<h2/>
+
+<% @choices.each do |choice| %>
+  <div class='person'><%= choice.name %></div>
+<% end %>
+
+<div class="error">
+</div>
+
+<%= form_tag(controller: "home", action: "vote", method: "post") do %>
+  <div class='field'>
+    <%= label_tag :marry %><br>
+    <%= select_tag "marry",options_from_collection_for_select(@choices, "name", "name"), selected: ["#{@choices[0].name}", "#{@choices[0].name}"] %> <br><br>
+  </div>
+  <div class='field'>
+    <%= label_tag :kill %><br>
+    <%= select_tag "fuck", options_from_collection_for_select(@choices, "name", "name"), selected: ["#{@choices[1].name}", "#{@choices[1].name}"] %> <br><br>
+  </div>
+  <div class='field'>
+    <%= label_tag :fuck %><br>
+    <%= select_tag "kill", options_from_collection_for_select(@choices, "name", "name"), selected: ["#{@choices[2].name}", "#{@choices[2].name}"] %> <br><br>
+  </div>
+   <%= submit_tag 'DECIDE', id: 'decision-submit' %>
+<% end %>
