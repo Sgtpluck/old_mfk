@@ -25,8 +25,8 @@ class Person < ActiveRecord::Base
 
   def self.updateMFKs(params)
     updated_persons = []
-    params["choices"].each do |key, value|
-      person = Person.find_by_name(value)
+    params['decisions'].each do  |key, value|
+      person = Person.find_by_name(value.downcase)
       person.update("#{key}".to_sym => person[key]+1)
       updated_persons.push(person)
     end

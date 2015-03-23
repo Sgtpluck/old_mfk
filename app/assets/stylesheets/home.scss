@@ -1,24 +1,25 @@
-@import "./csstyle";
+.options-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
 
-@include component(decide) {
-  top: 0;
-  width: 125px;
-  height: 125px;
-  padding: 10px;
+.option {
+  margin: 10px;
+  border: 1px solid;
+  opacity: .3;
+}
 
-  @include option(marry){
-    color: #1F1F1F;
-    background: pink;
-  }
+.who-to {
+  visibility: hidden;
+}
 
-  @include option(fuck){
-    color: #1F1F1F;
-    background: red;
-  }
-
-  @include option(kill){
-    color: #1F1F1F;
-    background: black;
-  }
-
+.person {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  padding: 0 3rem;
+  margin: 0;
+  border: 1px solid black;
+  max-width: 20%;
 }

@@ -1,24 +1,41 @@
 $(document).ready(function(){
+
   $('#decision-submit').click(function(e) {
     e.preventDefault();
     var error = $('.error');
     error.empty();
-    var marry = $('#marry').val();
-    var fuck = $('#fuck').val();
-    var kill = $('#kill').val();
-    if ($.unique([marry,fuck,kill]).length !== 3) {
+    var decisions = {};
+    var options = $('.option');
+
+    var people = $('.person');
+    people.map(function (idx, person) {
+        var PersonRect = person.getBoundingClientRect();
+        
+        options.map(function(idx, option) {
+            optionRect = option.getBoundingClientRect();
+            if (optionRect.bottom > PersonRect.bottom &&
+                optionRect.top < PersonRect.top &&
+                optionRect.left < PersonRect.left &&
+                optionRect.right > PersonRect.right) {
+                decisions[option.id] = person.innerText;
+            }
+        });
+
+    });
+    if ( Object.keys(decisions).length !== 3) {
       error.append('You need to fuck, marry, and kill someone unique, silly. No cheating.');
       return;
     }
+    var token = $('#token');
     $.ajax({
         type: 'POST',
         url: '/vote',
         data: {
-            'choices[marry]': $('#marry').val(),
-            'choices[fuck]': $('#fuck').val(),
-            'choices[kill]': $('#kill').val(),
+            decisions: decisions,
+            "authenticity_token": token.val()
         },
         success: function (data) {
+
             console.log(data);
         },
         error: function(xhr, textStatus, errorThrown) {
@@ -27,6 +44,3 @@ $(document).ready(function(){
     });
   });
 });
-
-// "authenticity_token"=>"/MJJC6qciqOum8crUcdFMcaEUAIWLnLw5QN7OP2bFzEY4km0OcI7OnxDwy6odiQbCKDjpqXYilS7LnWNZKq2Rg==", "marry"=>"mario batali", "fuck"=>"mario batali", "kill"=>"mario batali", "commit"=>"DECIDE", "method"=>"post", "controller"=>"home", "action"=>"vote"}
-
