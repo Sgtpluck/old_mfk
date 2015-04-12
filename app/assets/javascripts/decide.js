@@ -35,8 +35,11 @@ $(document).ready(function(){
             "authenticity_token": token.val()
         },
         success: function (data) {
-
-            console.log(data);
+            window.location.reload().promise().done(function (data) {
+                $('.statistics').append('this is where the stats go');
+                $('.statistics').append(data[0]);
+                console.log(data);
+            });
         },
         error: function(xhr, textStatus, errorThrown) {
             alert("There was a problem updating this item.");
