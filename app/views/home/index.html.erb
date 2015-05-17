@@ -1,7 +1,7 @@
 <div class='flexy'>
-  <%= image_tag("marry.png", class: 'option', id: 'marry') %>
-  <%= image_tag("fuck.png", class: 'option', id: 'fuck') %>
-  <%= image_tag("kill.png", class: 'option', id: 'kill') %>
+  <%= image_tag("marry.png", class: 'option') %>
+  <%= image_tag("fuck.png", class: 'option') %>
+  <%= image_tag("kill.png", class: 'option') %>
 </div>
 
 <div class="error flexy">
@@ -9,6 +9,8 @@
 
 <div class='statistics flexy'>
 </div>
+
+<%= link_to "Ugh, give me some other options", root_path, class: 'ugh' %>
 
 <table class='flexy'>
   <tr>
@@ -34,6 +36,8 @@
        id='token'
        value="<%= form_authenticity_token %>"/>
 
-<div class='options-container flexy' id="decision-submit">
+<div class='flexy' id="decision-submit">
   VOTE!
 </div>
+
+<%= link_to "MFK SOME MORE", root_path, class: 'flexy', id: 'new-options' %>

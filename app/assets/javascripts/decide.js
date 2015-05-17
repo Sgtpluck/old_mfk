@@ -24,16 +24,25 @@ $(document).ready(function(){
             "authenticity_token": token.val()
         },
         success: function (data) {
-            console.log(data);
 
-            $('.statistics').append(decisions["marry"] +
-                " has been married X% of the time <br />");
+            $('.statistics').append(data[0].name +
+                " has been married " +
+                Math.round(data[0].percentage * 100) + 
+                "% of the time <br />");
 
-            $('.statistics').append(decisions["fuck"] +
-                " has been fucked X% of the time <br />");
+            $('.statistics').append(data[1].name +
+                " has been fucked " +
+                Math.round(data[1].percentage * 100) + 
+                "% of the time <br />");
 
-            $('.statistics').append(decisions["kill"] +
-                " has been killed X% of the time <br />");
+            $('.statistics').append(data[2].name +
+                " has been killed " +
+                Math.round(data[2].percentage * 100) + 
+                "% of the time <br />");
+
+            $("#decision-submit").css("visibility", "hidden");
+            $(".ugh").css("visibility", "hidden");
+            $("#new-options").css("visibility", "visible");
         },
         error: function(xhr, textStatus, errorThrown) {
             alert("There was a problem updating this item.");

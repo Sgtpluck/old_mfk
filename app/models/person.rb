@@ -28,10 +28,10 @@ class Person < ActiveRecord::Base
     params['decisions'].each do  |key, value|
       person = Person.find_by_name(value.downcase)
       person.update("#{key}".to_sym => person[key]+1)
-      
+      total = person.marry + person.fuck + person.kill
+      updated_persons.push({name: person.name, percentage: (person[key].to_f/total.to_f)})
     end
     return updated_persons
   end
-  
 
 end

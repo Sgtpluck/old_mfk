@@ -14,10 +14,6 @@
   opacity: .3;
 }
 
-.who-to {
-  visibility: hidden;
-}
-
 .names {
   cursor: move;
 }
@@ -25,4 +21,8 @@
 .table {
   table-layout: fixed;
   padding: 0;
+}
+
+#new-options {
+  visibility: hidden;
 }
