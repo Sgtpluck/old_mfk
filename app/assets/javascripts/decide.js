@@ -7,25 +7,14 @@ $(document).ready(function(){
     var decisions = {};
     var options = $('.option');
 
-    var people = $('.person');
-    people.map(function (idx, person) {
-        var PersonRect = person.getBoundingClientRect();
-        
-        options.map(function(idx, option) {
-            optionRect = option.getBoundingClientRect();
-            if (optionRect.bottom > PersonRect.bottom &&
-                optionRect.top < PersonRect.top &&
-                optionRect.left < PersonRect.left &&
-                optionRect.right > PersonRect.right) {
-                decisions[option.id] = person.innerText;
-            }
-        });
+    var decisions = {};
+    var options = ['marry', 'fuck', 'kill']
 
+    $('.names').map(function(idx, name) {
+        var person = name.innerText;
+        decisions[options[idx]] = person;
     });
-    if ( Object.keys(decisions).length !== 3) {
-      error.append('You need to fuck, marry, and kill someone unique, silly. No cheating.');
-      return;
-    }
+
     var token = $('#token');
     $.ajax({
         type: 'POST',
@@ -35,11 +24,16 @@ $(document).ready(function(){
             "authenticity_token": token.val()
         },
         success: function (data) {
-            window.location.reload().promise().done(function (data) {
-                $('.statistics').append('this is where the stats go');
-                $('.statistics').append(data[0]);
-                console.log(data);
-            });
+            console.log(data);
+
+            $('.statistics').append(decisions["marry"] +
+                " has been married X% of the time <br />");
+
+            $('.statistics').append(decisions["fuck"] +
+                " has been fucked X% of the time <br />");
+
+            $('.statistics').append(decisions["kill"] +
+                " has been killed X% of the time <br />");
         },
         error: function(xhr, textStatus, errorThrown) {
             alert("There was a problem updating this item.");

@@ -1,40 +1,39 @@
-<h1>Hey, you.</h1>
-<h2>Who would you like to marry or fuck or kill?<h2/>
-
-<div class="error">
+<div class='flexy'>
+  <%= image_tag("marry.png", class: 'option', id: 'marry') %>
+  <%= image_tag("fuck.png", class: 'option', id: 'fuck') %>
+  <%= image_tag("kill.png", class: 'option', id: 'kill') %>
 </div>
 
-<div class='statistics'>
+<div class="error flexy">
 </div>
 
-  <div class='options-container'>
-    <% @choices.each do |choice| %>
-        <div class="image">
-          <% if choice.image %>
-            <%= choice.image %>
-          <% end %>
-        </div>
-        <div class='person'>
-          <%= choice.name.titleize %>
-        </div>
-    <% end %>
-  </div>
-
-    <div class='options-container'>
-      <%= image_tag("marry.png", class: 'option', id: 'marry') %>
-      <div class='who-to'></div>
-      <%= image_tag("fuck.png", class: 'option', id: 'fuck') %>
-      <div class='who-to'></div>
-      <%= image_tag("kill.png", class: 'option', id: 'kill') %>
-      <div class='who-to'></div>
-    </div>
+<div class='statistics flexy'>
 </div>
+
+<table class='flexy'>
+  <tr>
+    <td> 
+      <ul class='lists'>
+        <li class='person'>MARRY</li>
+        <li class='person'>FUCK</li>
+        <li class='person'>KILL</li>
+      </ul>
+    </td>
+    <td>
+      <ul class='lists' id='sortable'>
+        <% @choices.each do |choice| %>
+            <li class='person names'> <%= choice.name.titleize %></li>
+        <% end %>
+      </ul>
+    </td>
+  </tr>
+</table>
 
 <input name="authenticity_token" 
        type="hidden"
        id='token'
        value="<%= form_authenticity_token %>"/>
 
-<div class='options-container' id="decision-submit">
+<div class='options-container flexy' id="decision-submit">
   VOTE!
 </div>
