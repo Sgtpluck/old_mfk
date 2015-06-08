@@ -41,3 +41,15 @@
 </div>
 
 <%= link_to "MFK SOME MORE", root_path, class: 'flexy', id: 'new-options' %>
+
+<div class='flexy new-person'>
+<%= form_for @person do |f| %>
+  <div class='field'>
+    <%= f.label :name %>
+    <%= f.text_field :name %>
+  </div>
+  <div class='submit'>
+    <%= f.submit %>
+  </div>
+<% end %>
+</div>

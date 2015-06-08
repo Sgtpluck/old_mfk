@@ -17,12 +17,6 @@ class Person < ActiveRecord::Base
     return scenario
   end
 
-  def self.find_range
-    max_id = Person.maximum("id")
-    min_id = Person.minimum("id")
-    return max_id - min_id + 1
-  end
-
   def self.updateMFKs(params)
     updated_persons = []
     params['decisions'].each do  |key, value|
@@ -32,6 +26,19 @@ class Person < ActiveRecord::Base
       updated_persons.push({name: person.name, percentage: (person[key].to_f/total.to_f)})
     end
     return updated_persons
+  end
+
+  def self.save_person(wiki_blob)
+    return nil if wiki_blob.raw_data['query']['pages'].keys[0] == "-1"
+    return Person.create(name: wiki_blob.title, image: wiki_blob.image_urls[0])
+  end
+
+  private
+
+  def self.find_range
+    max_id = Person.maximum("id")
+    min_id = Person.minimum("id")
+    return max_id - min_id + 1
   end
 
 end
