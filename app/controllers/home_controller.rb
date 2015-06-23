@@ -10,12 +10,12 @@ class HomeController < ApplicationController
   end
 
   def add_person
-    person = Wiki.verify_person(params[:person][:name])
+    person = Wiki.verify_person(params[:name])
     
-    if Person.save_person(person)
-      render json: { person: person.name }
-    else 
-      render json: { person: nil }
-    end
+      if Person.save_person(person)
+        render json: { person: person.name }
+      else 
+        render json: { person: nil }
+      end
   end
 end

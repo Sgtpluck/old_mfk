@@ -3,5 +3,5 @@ Rails.application.routes.draw do
 
   post '/vote', to: "home#vote"
 
-  post '/person', to: "home#add_person", as: :people
+  post '/', to: "home#add_person", as: :people
 end
