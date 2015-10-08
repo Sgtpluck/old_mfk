@@ -13,7 +13,7 @@ gem 'jquery-rails'
 # to make things draggable/droppable
 gem 'jquery-ui-rails'
 
-gem 'wikipedia-client'
+gem 'httparty'
 
 group :development, :test do  
   gem 'factory_girl_rails'  

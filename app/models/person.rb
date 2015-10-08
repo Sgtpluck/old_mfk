@@ -28,9 +28,8 @@ class Person < ActiveRecord::Base
     return updated_persons
   end
 
-  def self.save_person(wiki_blob)
-    return nil if wiki_blob.raw_data['query']['pages'].keys[0] == "-1"
-    return Person.create(name: wiki_blob.title, image: wiki_blob.image_urls[0])
+  def self.save_person(person)
+    Person.create(name: person.name, image: person.url)
   end
 
   private
